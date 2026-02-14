@@ -51,7 +51,7 @@ if n < 3:
     print("Minimum element number is 3 !!!\n")
     usage()
     n = 3
-    print("I set the number of element to 3")
+    print("I set the number of elements to 3")
     #exit()
 
 ########## Calculations ########## 
