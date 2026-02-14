@@ -1,0 +1,50 @@
+# Yagi antenna design formulas (straight dipole)
+
+# 1. Wavelength (mm)
+lambda = 300000 / f_MHz      # in mm
+
+# 2. Reflector length
+L_ref = 0.51 * lambda
+L_ref_corr = L_ref * (1 - diam/(2*lambda)) * 0.99   # diameter + boom correction
+
+# 3. Driven dipole length
+L_dip = 0.48 * lambda
+L_dip_corr = L_dip * (1 - diam/(2*lambda)) * 0.99
+L_half = 0.24 * lambda       # half dipole
+
+# 4. Directors (n = director number, 1..N)
+L_dir = 0.45 * lambda - 0.005 * lambda * n
+L_dir_corr = L_dir * (1 - diam/(2*lambda)) * 0.99
+
+# 5. Element spacing
+S_ref_dip = 0.20 * lambda     # Ref → Dipole
+S_dip_dir = 0.20 * lambda     # Dipole → first director
+S_dir_dir = 0.15 * lambda     # Director → Director (0.15–0.20 λ)
+
+# 6. Boom length estimate
+Boom = S_ref_dip + S_dip_dir + S_dir_dir*(N_directors-1)
+
+# 7. Gain estimate (realistic)
+Gain_dBi ≈ 10 * log10(1.66 * N_elem)
+
+# 8. Element diameter correction
+L_corr = L * (1 - diam/(2*lambda))
+
+# 9. Boom/mounting correction
+L_final = L_corr * (1 - 0.01)   # approx. 1% shorting
+
+# 10. Dipole impedance (Ohms)
+Z_dip ≈ 73 * (1 - 0.6 * S_ref_dip / lambda)
+
+# 11. Balun choke
+D_coil = 0.03 * lambda          # diameter
+Turns = 4-6
+
+# 12. Quick reference (rule of thumb)
+Ref = 0.51 * lambda
+Dip = 0.48 * lambda
+Dir = 0.44-0.45 * lambda
+Spacing ≈ 0.20 * lambda
+
+# 13. Frequency scaling
+L_new = L_old * (f_old / f_new)

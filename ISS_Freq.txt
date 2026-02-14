@@ -1,0 +1,5 @@
+https://www.ariss.org/current-status-of-iss-stations.html
+
+voice repeater (145.990 MHz up {PL 67} & 437.800 MHz down).
+
+PL 67 -> CTCSS

@@ -1,0 +1,47 @@
+# Yagi antenna tervezési képletek (egyenes dipól)
+
+# 1. Hullámhossz (mm)
+lambda = 300000 / f_MHz      # mm-ben
+
+# 2. Reflektor hossza
+L_ref = 0.51 * lambda
+
+# 3. Meghajtott dipól hossza
+L_dip = 0.48 * lambda
+L_half = 0.24 * lambda       # fél dipól
+
+# 4. Direktór hossza (n = direktor sorszáma, 1..N)
+L_dir = 0.45 * lambda - 0.005 * lambda * n
+
+# 5. Elem-távolságok
+S_ref_dip = 0.20 * lambda     # Ref → Dipól
+S_dip_dir = 0.20 * lambda     # Dipól → első direktor
+S_dir_dir = 0.15 * lambda     # Direktór → Direktór (0.15–0.20 λ)
+
+# 6. Boom hossz becslés
+Boom = (N - 1) * átlag_spacing
+
+# 7. Gain közelítő (reális)
+Gain ≈ 10 * log10(1.66 * N)  # valóságos dBi
+
+# 8. Elemátmérő korrekció
+L_corr = L * (1 - d/(2*lambda))
+
+# 9. Boom/rögzítés korrekció
+L_final = L_corr * (1 - 0.01)   # kb. 1% rövidítés
+
+# 10. Dipól impedancia (Ω)
+Z ≈ 73 * (1 - 0.6 * S/lambda)
+
+# 11. Balun choke mérete
+D_coil = 0.03 * lambda          # átmérő
+Menetszám = 4-6
+
+# 12. Ökölszabály összefoglalva
+Ref = 0.51 * lambda
+Dip = 0.48 * lambda
+Dir = 0.44-0.45 * lambda
+Spacing ≈ 0.20 * lambda
+
+# 13. Frekvencia skálázás
+L_new = L_old * (f_old / f_new)
