@@ -58,7 +58,7 @@ Dipole distance:      136.9 mm
 1. Director distance: 273.8 mm
 
 2. Director length:   302.56 mm
-2. Director distance: 410.70000000000005 mm
+2. Director distance: 410.70 mm
 
 3. Director length:   302.56 mm
 3. Director distance: 547.7 mm
