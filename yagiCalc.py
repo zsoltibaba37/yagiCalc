@@ -26,7 +26,7 @@ def linea():
 
 def usage():
     print("Usage:")
-    print(f"$> python calcYagi.py {example} {nelem}\n")
+    print(f"$> python {argv[0]} {example} {nelem}\n")
 
 if len(argv) < 3:
     print(f"Need Frequency and elements number !!! \n")
@@ -64,46 +64,46 @@ f = float(argv[1]) * 1e6
 
 lambd = round(sol / f, 4)
 
-gain = 2 + 2.5 * (n -1)
+#gain = 2 + 2.5 * (n -1)
 gain = round(10 * log10(1.66 * n))
 linea()
 print(f"The frequency: {frequency} MHz")
-print(f"The lambda is: {lambd*1e3} mm")
+print(f"The lambda is: {lambd*1e3:.2f} mm")
 print(f"The elements : {n} ")
 print(f"The gain is  : {gain} dBi")
 linea()
 
 # ----------------------------------------------------
 # Reflector calc
-refl = round(correction(0.51 * lambd * 1e3), 2)
-print(f"Reflector length:     {refl} mm")
+refl = correction(0.51 * lambd * 1e3)
+print(f"Reflector length:     {refl:.2f} mm")
 print("Reflector is in:      0 mm\n")
 
 
 # Dipole calc
-dipole = round(correction(0.48 * lambd * 1e3), 2)
-dipDist = round(0.2 * lambd * 1e3, 1)
-print(f"Dipole length:        {dipole} mm")
-print(f"Dipole distance:      {dipDist} mm\n")
+dipole = correction(0.48 * lambd * 1e3)
+dipDist = 0.2 * lambd * 1e3
+print(f"Dipole length:        {dipole:.2f} mm")
+print(f"Dipole distance:      {dipDist:.2f} mm\n")
 
 # Directors calc
 if n > 3:
     for i in range(1, n-1):
-        director = round(correction(0.45 * lambd * 1e3), 2)
+        director = correction(0.45 * lambd * 1e3)
         # L_dir(n) = L_dir - (0.005 * lambda * n)
-        directorN = round(director - (0.005 * lambd * i), 2)
+        directorN = director - (0.005 * lambd * i)
         directorDist = dipDist + round(0.2 * lambd * 1e3 * i, 1)
-        print(f"{i}. Director length:   {directorN} mm")
-        print(f"{i}. Director distance: {directorDist} mm\n")
+        print(f"{i}. Director length:   {directorN:.2f} mm")
+        print(f"{i}. Director distance: {directorDist:.2f} mm\n")
 
 else:
-    director = round(correction(0.45 * lambd * 1e3), 2)
-    directorDist = dipDist + round(0.2 * lambd * 1e3, 1)
-    print(f"Director length:      {director} mm")
-    print(f"Director distance:    {directorDist} mm\n")
+    director = correction(0.45 * lambd * 1e3)
+    directorDist = dipDist + (0.2 * lambd * 1e3)
+    print(f"Director length:      {director:.2f} mm")
+    print(f"Director distance:    {directorDist:.2f} mm\n")
 
-balun = round(0.03 * lambd * 1e3, 2)
-print(f"Balun 4-6 thread, diameter {balun} mm")
+balun = 0.03 * lambd * 1e3
+print(f"Balun 4-6 thread, diameter {balun:.2f} mm")
 
 
 linea()
