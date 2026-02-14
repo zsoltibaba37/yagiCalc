@@ -17,12 +17,12 @@ nelem = 3
 ########## For a more accurate calculation, change this ##########
 ########## For a more accurate calculation, change this ##########
 
-diam = 8 # the elements diameter
+diam = 12 # the elements diameter
 
 ##################################################################
 
 def linea():
-    print("--------------------------------------------------")
+    print("----------------------------------------")
 
 def usage():
     print("Usage:")
@@ -38,11 +38,12 @@ if not argv[2].isdigit():
     usage()
     exit(1)
 
-
 ########## Length Correction ##########
 def correction(L):
-    corr_d = diam / (2 * lambd * 1e3)
-    corr_boom = 0.012
+    #corr_d = diam / (2 * lambd * 1e3)
+    corr_d = 0.015 * (diam / 10)
+    #corr_boom = 0.012
+    corr_boom = 0.006
     return L * (1 - corr_d - corr_boom)
 
 n = int(argv[2])
@@ -62,15 +63,18 @@ sol = 299792458.0 # speed of light
 
 f = float(argv[1]) * 1e6
 
-lambd = round(sol / f, 4)
+lambd = sol / f
 
 #gain = 2 + 2.5 * (n -1)
-gain = round(10 * log10(1.66 * n))
+gain = 10 * log10(1.66 * n)
 linea()
-print(f"The frequency: {frequency} MHz")
-print(f"The lambda is: {lambd*1e3:.2f} mm")
-print(f"The elements : {n} ")
-print(f"The gain is  : {gain} dBi")
+print("       - Yagi Antenna Design -")
+linea()
+print(f"The frequency       : {frequency} MHz")
+print(f"The lambda is       : {lambd*1e3:.2f} mm")
+print(f"The elements        : {n} ")
+print(f"The gain is         : {gain:.2f} dBi")
+print(f"The element diameter: {diam} mm")
 linea()
 
 # ----------------------------------------------------
@@ -90,9 +94,9 @@ print(f"Dipole distance:      {dipDist:.2f} mm\n")
 if n > 3:
     for i in range(1, n-1):
         director = correction(0.45 * lambd * 1e3)
-        # L_dir(n) = L_dir - (0.005 * lambda * n)
-        directorN = director - (0.005 * lambd * i)
-        directorDist = dipDist + round(0.2 * lambd * 1e3 * i, 1)
+        #directorN = director - (0.005 * lambd * i)
+        directorN = director * (1 - 0.01*i/(n-2))
+        directorDist = dipDist + (0.2 * lambd * 1e3 * i)
         print(f"{i}. Director length:   {directorN:.2f} mm")
         print(f"{i}. Director distance: {directorDist:.2f} mm\n")
 
@@ -102,9 +106,11 @@ else:
     print(f"Director length:      {director:.2f} mm")
     print(f"Director distance:    {directorDist:.2f} mm\n")
 
+# Balun calc
 balun = 0.03 * lambd * 1e3
+linea()
+print("5 turns RG-58 on ferrite ring - or")
 print(f"Balun 4-6 thread, diameter {balun:.2f} mm")
-
 
 linea()
 print(d.strftime("%c"))
