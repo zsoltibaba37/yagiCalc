@@ -70,4 +70,8 @@ $> ./yagiCalc.py 145.99 3
       Sun Feb 15 09:27:55 2026
 ----------------------------------------
 ```
+![Yagi Antenna](https://github.com/zsoltibaba37/yagiCalc/blob/main/yagiAntenna.png)
+
+---
+2026
 
