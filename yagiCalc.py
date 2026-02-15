@@ -1,7 +1,13 @@
 #!/usr/bin/env python
+# -*- coding: UTF-8 -*-
 
-from sys import argv
-from sys import exit
+__author__ = "Zsolt Peto"
+__license__ = "MIT"
+__copyright__ = "Copyright 2026"
+__version__ = "0.1"
+__status__ = "In progress"
+
+from sys import argv, exit
 import datetime
 import os
 from math import log10
@@ -27,24 +33,26 @@ def linea():
     print("----------------------------------------")
 
 def usage():
+    print(f"yagiCalc {__version__}")
+    print(f"{__copyright__} {__author__}\n")
     cprint("Usage:", "blue")
     print(f"$> python {argv[0]} {example} {nelem}\n")
 
 if len(argv) < 3:
-    print(f"Need Frequency and elements number !!! \n")
     usage()
+    print(f"Need Frequency and elements number !!! \n")
     exit(1)
 
 if not argv[2].isdigit():
-    print("Use integer numbers ie 1 or 2 or 3 !!!\n")
     usage()
+    print("Use integer numbers ie 1 or 2 or 3 !!!\n")
     exit(1)
 
 n = int(argv[2])
 
 if n < 3:
-    print("Minimum element number is 3 !!!\n")
     usage()
+    print("Minimum element number is 3 !!!\n")
     n = 3
     cprint("I set the number of elements to 3", "green")
     #exit()
@@ -90,7 +98,7 @@ refl = correction(0.51 * lambd * 1e3)
 print(f" Reflector length    : ", end='')
 cprint(f"{refl:.2f} mm", "yellow")
 print(" Reflector is in     : ", end='')
-cprint("0 mm", "white")
+cprint("0 mm", "yellow")
 
 
 # Dipole calc
@@ -126,7 +134,7 @@ else:
 # Balun calc
 balun = 0.03 * lambd * 1e3
 linea()
-print(" 5 turns RG-58 on ferrite ring - or")
+print("  5 turns RG-58 on ferrite ring or")
 print(f" Balun 4-6 thread, diameter {balun:.2f} mm")
 
 linea()
