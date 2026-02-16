@@ -96,7 +96,7 @@ linea()
 # Reflector calc
 refl = correction(0.51 * lambd * 1e3)
 print(f" Reflector length    : ", end='')
-cprint(f"{refl:.2f} mm", "yellow")
+cprint(f"{refl:.1f} mm", "yellow")
 print(" Reflector is in     : ", end='')
 cprint("0 mm", "yellow")
 
@@ -106,9 +106,9 @@ dipole = correction(0.48 * lambd * 1e3)
 dipDist = 0.2 * lambd * 1e3
 print()
 print(f" Dipole length       : ", end='')
-cprint(f"{dipole:.2f} mm", "yellow")
+cprint(f"{dipole:.1f} mm", "yellow")
 print(f" Dipole distance     : ", end='')
-cprint(f"{dipDist:.2f} mm", "yellow")
+cprint(f"{dipDist:.1f} mm", "yellow")
 
 # Directors calc
 if n > 3:
@@ -119,17 +119,17 @@ if n > 3:
         directorN = director * (1 - 0.01*i/(n-2))
         directorDist = dipDist + (0.2 * lambd * 1e3 * i)
         print(f" {i}. Director length  : ", end='')
-        cprint(f"{directorN:.2f} mm", "yellow")
+        cprint(f"{directorN:.1f} mm", "yellow")
         print(f" {i}. Director distance: ", end='')
-        cprint(f"{directorDist:.2f} mm", "yellow")
+        cprint(f"{directorDist:.1f} mm", "yellow")
 else:
     print()
     director = correction(0.45 * lambd * 1e3)
     directorDist = dipDist + (0.2 * lambd * 1e3)
     print(f" Director length     : ", end='')
-    cprint(f"{director:.2f} mm", "yellow")
+    cprint(f"{director:.1f} mm", "yellow")
     print(f" Director distance   : ", end='')
-    cprint(f"{directorDist:.2f} mm", "yellow")
+    cprint(f"{directorDist:.1f} mm", "yellow")
 
 # Balun calc
 balun = 0.03 * lambd * 1e3
