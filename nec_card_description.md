@@ -28,13 +28,17 @@ Példa:
 GW 1 25 0.0 0.509 0.0  0.0 -0.509 0.0  0.005
 ```
 Jelentése:
+
 Paraméter	Jelentés
-1       	Wire ID (tag number)
-25	        szegmensek száma
-x1,y1,z1	huzal kezdőpont
-x2,y2,z2	huzal végpont
-0.005	    sugár (m)
-Mit látsz itt konkrétan?
+
+|1|Wire ID (tag number)|
+|:---|:---|
+|25|szegmensek száma|
+|x1,y1,z1|huzal kezdőpont|
+|x2,y2,z2|huzal végpont|
+|0.005|sugár (m)|
+
+- Mit látsz itt konkrétan?
 
 ---
 
