@@ -57,6 +57,21 @@ if n < 3:
     cprint("I set the number of elements to 3", "green")
     #exit()
 
+try:
+    x = float(argv[1])
+    y = float(argv[2])
+    if x <= 0:
+        raise ValueError
+    if y <= 0:
+        raise ValueError
+except ValueError:
+    usage()
+    print("Use float number !")
+    print("The number is zero or smaller then zero\n")
+    exit()
+
+
+
 ########## Length Correction ##########
 def correction(L):
     #corr_d = diam / (2 * lambd * 1e3)
