@@ -48,6 +48,7 @@ if not argv[2].isdigit():
     print("Use integer numbers ie 1 or 2 or 3 !!!\n")
     exit(1)
 
+# element number
 n = int(argv[2])
 
 if n < 3:
